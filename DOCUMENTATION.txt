@@ -1,0 +1,26 @@
+GET /
+
+Prints this documentation.
+
+###
+
+GET /inventory
+POST /inventory
+DELETE /inventory
+
+Prints the current inventory. Unless you've manipulated inventory using a POST to /inventory, this will be an empty JSON object.
+By POSTing JSON content, update the inventory by adding the numerical values of each key. Any non-numerical value is a 400 error.
+By DELETEing, remove all inventory items.
+
+###
+
+GET /delay?response={integer}&content={integer}
+
+Responds while introducing the specified artificial delays. Used to simulate slow response times.
+
+response - How long (in milliseconds) to delay before writing the response headers. Optional. Default is 0.
+content - How long (in milliseconds) to delay before writing the content. This happens in the middle of the content, that is, some content is written immediately before and after the delay. Optional. Default is 0.
+
+###
+
+

@@ -1,0 +1,24 @@
+{
+  "name": "legion-test-server",
+  "version": "0.0.1",
+  "description": "Simple \"obstacle course\" server. Used to validate the correctness of various legion libraries.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/main.js --server",
+    "doc": "node src/main.js --docs > DOCUMENTATION.txt",
+    "test": "eslint ./src/** ./spec/** && jasmine && istanbul cover jasmine",
+    "clean": "rimraf node_modules coverage"
+  },
+  "author": "Christopher Lane Hinson <lane@webperformance.com>",
+  "license": "APSL-2.0",
+  "devDependencies": {
+    "eslint": "^2.10.2",
+    "istanbul": "^0.4.3",
+    "jasmine": "^2.4.1",
+    "node-fetch": "^1.5.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4"
+  }
+}
