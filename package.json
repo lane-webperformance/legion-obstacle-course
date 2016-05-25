@@ -2,7 +2,7 @@
   "name": "legion-obstacle-course",
   "version": "0.0.2",
   "description": "Simple \"obstacle course\" server. Used to validate the correctness of various legion libraries.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node src/main.js --server",
     "doc": "node src/main.js --docs > DOCUMENTATION.txt",
