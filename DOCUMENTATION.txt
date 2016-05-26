@@ -8,8 +8,11 @@ GET /inventory
 POST /inventory
 DELETE /inventory
 
-Prints the current inventory. Unless you've manipulated inventory using a POST to /inventory, this will be an empty JSON object.
-By POSTing JSON content, update the inventory by adding the numerical values of each key. Any non-numerical value is a 400 error.
+Prints the current inventory. Unless you've manipulated inventory using a POST,PUT, or PATCH to /inventory, this will be an empty JSON object.
+The inventory is a flat JSON object mapping keys to numerical values. Any attempt to use any non-numerical value will result in a 400 error.
+By POSTing JSON content, update the inventory by adding the numerical values of the new keys to the values already in storage.
+By PUTing JSON content, update the inventory by replacing the entire inventory with the new JSON object.
+By PATCHing JSON content, update the inventory by setting each key in the new JSON object (but leaving the remainder intact).
 By DELETEing, remove all inventory items.
 
 ###
