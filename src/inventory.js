@@ -1,10 +1,6 @@
 
 var express = require('express');
 
-///////////////////////////////////////////////////////////////////////////////
-// inventory
-///////////////////////////////////////////////////////////////////////////////
-
 module.exports = function() {
   var inventory_holder = {};
   
@@ -31,6 +27,18 @@ module.exports = function() {
     res.json(inventory_holder);
   });
 
+  app.put('/inventory', function(req,res) {
+    inventory_holder = JSON.parse(JSON.stringify(req.body));
+    res.json(inventory_holder);
+  });
+
+  app.patch('/inventory', function(req,res) {
+    inventory_holder = Object.assign({},
+      inventory_holder,
+      JSON.parse(JSON.stringify(req.body)));
+    res.json(inventory_holder);
+  });
+
   return app;
 };
 
@@ -39,6 +47,11 @@ module.exports.documentation =
   'POST /inventory\n' +
   'DELETE /inventory\n' +
   '\n' +
-  'Prints the current inventory. Unless you\'ve manipulated inventory using a POST to /inventory, this will be an empty JSON object.\n' +
-  'By POSTing JSON content, update the inventory by adding the numerical values of each key. Any non-numerical value is a 400 error.\n' +
+  'Prints the current inventory. Unless you\'ve manipulated inventory using a POST,PUT, or PATCH to /inventory, this will be an empty JSON object.\n' +
+  'The inventory is a flat JSON object mapping keys to numerical values. Any attempt to use any non-numerical value will result in a 400 error.\n' +
+  'By POSTing JSON content, update the inventory by adding the numerical values of the new keys to the values already in storage.\n' +
+  'By PUTing JSON content, update the inventory by replacing the entire inventory with the new JSON object.\n' +
+  'By PATCHing JSON content, update the inventory by setting each key in the new JSON object (but leaving the remainder intact).\n' +
   'By DELETEing, remove all inventory items.';
+
+

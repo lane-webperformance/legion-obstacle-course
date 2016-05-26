@@ -69,4 +69,49 @@ describe('The /inventory handler', function() {
       done.fail(err);
     });
   });
+
+  it('supports PUT updates', function(done) {
+    var update1 = JSON.stringify({ foo : 4, bar : 2 });
+    var update2 = JSON.stringify({ foo : 4, baz : 9 });
+    var headers = {'content-type':'application/json'};
+
+    Promise.resolve().then(function() {
+      return fetch(hostport + '/inventory', { method: 'PUT', body: update1, headers : headers });
+    }).then(function(res) {
+      return res.json();
+    }).then(function(json) {
+      expect(json).toEqual({ foo : 4, bar : 2 });
+      return fetch(hostport + '/inventory', { method: 'PUT', body: update2, headers : headers });
+    }).then(function(res) {
+      return res.json();
+    }).then(function(json) {
+      expect(json).toEqual({ foo : 4, baz : 9 });
+      done();
+    }).catch(function(err) {
+      done.fail(err);
+    });
+  });
+
+  it('supports PATCH updates', function(done) {
+    var update1 = JSON.stringify({ foo : 4, bar : 2 });
+    var update2 = JSON.stringify({ foo : 1, baz : 9 });
+    var headers = {'content-type':'application/json'};
+
+    Promise.resolve().then(function() {
+      return fetch(hostport + '/inventory', { method: 'PATCH', body: update1, headers : headers });
+    }).then(function(res) {
+      return res.json();
+    }).then(function(json) {
+      expect(json).toEqual({ foo : 4, bar : 2 });
+      return fetch(hostport + '/inventory', { method: 'PATCH', body: update2, headers : headers });
+    }).then(function(res) {
+      return res.json();
+    }).then(function(json) {
+      expect(json).toEqual({ foo : 1, bar : 2, baz : 9 });
+      done();
+    }).catch(function(err) {
+      done.fail(err);
+    });
+  });
+
 });
