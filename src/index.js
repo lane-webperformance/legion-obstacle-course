@@ -24,8 +24,9 @@ module.exports.index.documentation =
   '\n' +
   'Prints this documentation.';
 
-module.exports.inventory = require('./inventory');
 module.exports.delay = require('./delay');
+module.exports.inventory = require('./inventory');
+module.exports.ticket = require('./ticket');
 
 ///////////////////////////////////////////////////////////////////////////////
 // listen
@@ -36,8 +37,9 @@ module.exports.listen = function() {
 
   app.use(bodyParser.json({}))
      .use(this.index)
+     .use(this.delay())
      .use(this.inventory())
-     .use(this.delay());
+     .use(this.ticket());
 
   return app.listen.apply(app, arguments);
 };
