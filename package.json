@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/main.js --server",
-    "doc": "node src/main.js --docs > DOCUMENTATION.txt",
+    "generateDocs": "node src/main.js --docs > DOCUMENTATION.txt",
     "test": "eslint ./src/** ./spec/** && jasmine && istanbul cover jasmine",
     "clean": "rimraf node_modules coverage"
   },

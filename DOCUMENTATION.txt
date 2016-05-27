@@ -4,6 +4,15 @@ Prints this documentation.
 
 ###
 
+GET /delay?response={integer}&content={integer}
+
+Responds while introducing the specified artificial delays. Used to simulate slow response times.
+
+response - How long (in milliseconds) to delay before writing the response headers. Optional. Default is 0.
+content - How long (in milliseconds) to delay before writing the content. This happens in the middle of the content, that is, some content is written immediately before and after the delay. Optional. Default is 0.
+
+###
+
 GET /inventory
 POST /inventory
 DELETE /inventory
@@ -17,12 +26,15 @@ By DELETEing, remove all inventory items.
 
 ###
 
-GET /delay?response={integer}&content={integer}
+POST /ticket/new
+POST /ticket/redeem?ticket={integer}
 
-Responds while introducing the specified artificial delays. Used to simulate slow response times.
+Get a random ID number (called a ticket) and later redeem it by submitting the same ticket.
+Each ticket can only be redeemed once.
+Each call yields a JSON response with a "status" field with possible values "success" or "failure".
+If there is a failure, there will be a "reason" field with a human-readable explanation.
+When a new ticket is created, there will be a "ticket" field with the randomly selected ID of the ticket.
 
-response - How long (in milliseconds) to delay before writing the response headers. Optional. Default is 0.
-content - How long (in milliseconds) to delay before writing the content. This happens in the middle of the content, that is, some content is written immediately before and after the delay. Optional. Default is 0.
 
 ###
 
