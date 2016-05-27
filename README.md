@@ -3,6 +3,7 @@ Obstacle Course
 ---------------
 
 [![Build Status](https://travis-ci.org/lane-webperformance/legion-obstacle-course.svg?branch=master)](https://travis-ci.org/lane-webperformance/legion-obstacle-course)
+[![Dependency Status](https://gemnasium.com/badges/github.com/lane-webperformance/legion-obstacle-course.svg)](https://gemnasium.com/github.com/lane-webperformance/legion-obstacle-course)
 
 Legion's Obstacle Course is a simple express.js server. Included are a variety
 of practice tasks. These tasks can be used to test Legion's functionality or
