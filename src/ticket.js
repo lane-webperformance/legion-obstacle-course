@@ -7,7 +7,7 @@ module.exports = function() {
   var app = express();
 
   app.post('/ticket/new', function(req,res) {
-    var ticket = Math.round(Math.random(1000000000+1)).toString();
+    var ticket = Math.round(Math.random()*1000000000+1).toString();
 
     tickets[ticket] = true;
 

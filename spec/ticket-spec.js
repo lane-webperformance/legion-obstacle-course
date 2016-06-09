@@ -1,10 +1,13 @@
-var index = require('../src/index');
-var fetch = require('node-fetch');
+'use strict';
+
+const fetch = require('node-fetch');
+const index = require('../src/index');
+const R = require('ramda');
 
 describe('The /ticket handler', function() {
-  var server;
-  var port = 5000;
-  var hostport = 'http://localhost:' + port;
+  const port = 5000;
+  const hostport = 'http://localhost:' + port;
+  let server = null;
 
   beforeEach(function() {
     server = index.listen(port);
@@ -41,4 +44,21 @@ describe('The /ticket handler', function() {
     });
   });
 
+  it('can create lots of tickets in parallel', function(done) {
+    const tickets = [];
+
+    for( let i = 0; i < 100; i++ )
+      tickets.push(fetch(hostport + '/ticket/new', { method: 'POST' })
+                     .then(res => res.json())
+                     .then(json => json.ticket));
+
+    Promise.all(tickets)
+           .then(ts => {
+             expect(R.uniq(ts).length).toBe(100);
+             ts.forEach(t => expect(t).toBeGreaterThan(0));
+           })
+           .then(done)
+           .catch(done.fail);
+          
+  });
 });
