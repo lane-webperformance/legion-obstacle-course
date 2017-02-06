@@ -1,6 +1,6 @@
 {
   "name": "legion-obstacle-course",
-  "version": "0.0.6",
+  "version": "0.0.12",
   "description": "Simple \"obstacle course\" server. Used to validate the correctness of various legion libraries.",
   "main": "src/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "ramda": "^0.21.0"
   },
   "dependencies": {
-    "body-parser": "^1.15.1",
-    "express": "^4.13.4"
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1"
   }
 }
