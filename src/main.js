@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
 
-var process = require('process');
+'use strict';
 
-var port = 4321;
+const process = require('process');
+
+const port = 4321;
 
 if( process.argv.indexOf('--server') > 0 ) {
   require('./index').listen(port, function() {

@@ -26,6 +26,15 @@ By DELETEing, remove all inventory items.
 
 ###
 
+POST /login?id={user identity}
+
+Login to a service with a single-use identity.
+If you login twice with the same identity, or login with an identity not in the pre-built list, the result will be a failure.
+The logins are:["hello1","ajmurray","joe@example.com","sue@example.com","testaccount1","testaccount2","testaccount3","testaccount4","testaccount5"]
+
+
+###
+
 POST /ticket/new
 POST /ticket/redeem?ticket={integer}
 

@@ -1,10 +1,12 @@
-var index = require('../src/index');
-var fetch = require('node-fetch');
+'use strict';
+
+const index = require('../src/index');
+const fetch = require('node-fetch');
 
 describe('The /inventory handler', function() {
-  var server;
-  var port = 5000;
-  var hostport = 'http://localhost:' + port;
+  let server = null;
+  const port = 5000;
+  const hostport = 'http://localhost:' + port;
 
   beforeEach(function() {
     server = index.listen(port);
@@ -28,9 +30,9 @@ describe('The /inventory handler', function() {
   });
 
   it('supports POST updates', function(done) {
-    var update1 = JSON.stringify({ foo : 1, bar : 2 });
-    var update2 = JSON.stringify({ foo : 2, baz : 3 });
-    var headers = {'Content-Type':'application/json'};
+    const update1 = JSON.stringify({ foo : 1, bar : 2 });
+    const update2 = JSON.stringify({ foo : 2, baz : 3 });
+    const headers = {'Content-Type':'application/json'};
 
     Promise.resolve().then(function() {
       return fetch(hostport + '/inventory', { method: 'POST', body: update1, headers : headers });
@@ -50,8 +52,8 @@ describe('The /inventory handler', function() {
   });
 
   it('supports DELETE updates', function(done) {
-    var update = JSON.stringify({ foo : 4, bar : 2 });
-    var headers = {'content-type':'application/json'};
+    const update = JSON.stringify({ foo : 4, bar : 2 });
+    const headers = {'content-type':'application/json'};
 
     Promise.resolve().then(function() {
       return fetch(hostport + '/inventory', { method: 'POST', body: update, headers : headers });
@@ -71,9 +73,9 @@ describe('The /inventory handler', function() {
   });
 
   it('supports PUT updates', function(done) {
-    var update1 = JSON.stringify({ foo : 4, bar : 2 });
-    var update2 = JSON.stringify({ foo : 4, baz : 9 });
-    var headers = {'content-type':'application/json'};
+    const update1 = JSON.stringify({ foo : 4, bar : 2 });
+    const update2 = JSON.stringify({ foo : 4, baz : 9 });
+    const headers = {'content-type':'application/json'};
 
     Promise.resolve().then(function() {
       return fetch(hostport + '/inventory', { method: 'PUT', body: update1, headers : headers });
@@ -93,9 +95,9 @@ describe('The /inventory handler', function() {
   });
 
   it('supports PATCH updates', function(done) {
-    var update1 = JSON.stringify({ foo : 4, bar : 2 });
-    var update2 = JSON.stringify({ foo : 1, baz : 9 });
-    var headers = {'content-type':'application/json'};
+    const update1 = JSON.stringify({ foo : 4, bar : 2 });
+    const update2 = JSON.stringify({ foo : 1, baz : 9 });
+    const headers = {'content-type':'application/json'};
 
     Promise.resolve().then(function() {
       return fetch(hostport + '/inventory', { method: 'PATCH', body: update1, headers : headers });
@@ -113,5 +115,4 @@ describe('The /inventory handler', function() {
       done.fail(err);
     });
   });
-
 });

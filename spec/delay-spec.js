@@ -1,10 +1,12 @@
-var index = require('../src/index');
-var fetch = require('node-fetch');
+'use strict';
+
+const index = require('../src/index');
+const fetch = require('node-fetch');
 
 describe('The /delay handler', function() {
-  var server;
-  var port = 5000;
-  var hostport = 'http://localhost:' + port;
+  let server = null;
+  const port = 5000;
+  const hostport = 'http://localhost:' + port;
 
   beforeEach(function() {
     server = index.listen(port);
@@ -28,7 +30,7 @@ describe('The /delay handler', function() {
   });
 
   it('waits a specified time before returning', function(done) {
-    var start = Date.now();
+    const start = Date.now();
 
     fetch(hostport + '/delay?response=2000').then(function() {
       expect(Date.now() - start).toBeGreaterThan(1900);
@@ -40,7 +42,7 @@ describe('The /delay handler', function() {
   });
 
   it('waits a specified time before rendering content', function(done) {
-    var start = Date.now();
+    const start = Date.now();
 
     fetch(hostport + '/delay?content=2000').then(function(res) {
       expect(Date.now() - start).toBeLessThan(100);

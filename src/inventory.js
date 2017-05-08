@@ -1,28 +1,29 @@
+'use strict';
 
-var express = require('express');
+const express = require('express');
 
 module.exports = function() {
-  var inventory_holder = {};
+  let inventory_holder = {};
   
-  var app = express();
+  const app = express();
 
-  app.get('/inventory', function(req,res) {
+  app.get('/inventory', function(_req,res) {
     res.json(inventory_holder);
   });
 
   app.post('/inventory', function(req,res) {
-    for( var key in req.body ) {
+    for( const key in req.body ) {
       if( typeof req.body[key] != 'number' )
         return res.sendStatus(400);
     }
 
-    for( key in req.body )
+    for( const key in req.body )
       inventory_holder[key] = (inventory_holder[key] || 0) + req.body[key];
 
     res.json(inventory_holder);
   });
 
-  app.delete('/inventory', function(req,res) {
+  app.delete('/inventory', function(_req,res) {
     inventory_holder = {};
     res.json(inventory_holder);
   });

@@ -1,13 +1,14 @@
+'use strict';
 
-var express = require('express');
+const express = require('express');
 
 module.exports = function() {
-  var tickets = {};
+  const tickets = {};
   
-  var app = express();
+  const app = express();
 
-  app.post('/ticket/new', function(req,res) {
-    var ticket = Math.round(Math.random()*1000000000+1).toString();
+  app.post('/ticket/new', function(_req,res) {
+    const ticket = Math.round(Math.random()*1000000000+1).toString();
 
     tickets[ticket] = true;
 
@@ -16,15 +17,15 @@ module.exports = function() {
   });
 
   app.post('/ticket/redeem', function(req,res) {
-    var ticket = req.query.ticket || '0';
+    const ticket = req.query.ticket || '0';
 
     if( tickets[ticket] ) {
       tickets[ticket] = false;
     
       res.json({ status : 'success' });
     } else {
-      res.json({ status : 'failure',
-                 reason : 'ticket ' + req.query.ticket + ' not found' });
+      res.status(422).json({ status : 'failure',
+                             reason : 'ticket ' + req.query.ticket + ' not found' });
     }
   });
 

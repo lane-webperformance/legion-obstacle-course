@@ -1,10 +1,12 @@
-var index = require('../src/index');
-var fetch = require('node-fetch');
+'use strict';
+
+const index = require('../src/index');
+const fetch = require('node-fetch');
 
 describe('The / handler (that is, root index handler)', function() {
-  var server;
-  var port = 5000;
-  var hostport = 'http://localhost:' + port;
+  let server = null;
+  const port = 5000;
+  const hostport = 'http://localhost:' + port;
 
   beforeEach(function() {
     server = index.listen(port);

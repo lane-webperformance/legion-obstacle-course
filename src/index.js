@@ -1,11 +1,12 @@
+'use strict';
 
-var express = require('express');
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 module.exports.generateDocumentation = function() {
-  var result = '';
+  let result = '';
 
-  for( var key in module.exports ) {
+  for( const key in module.exports ) {
     if( module.exports[key].documentation ) {
       result += module.exports[key].documentation;
       result += '\n\n###\n\n';
@@ -15,10 +16,11 @@ module.exports.generateDocumentation = function() {
   return result;
 };
 
-module.exports.index = express().get('/', function(req,res) {
+module.exports.index = express().get('/', function(_req,res) {
   res.setHeader('content-type', 'text/plain');
   res.send(module.exports.generateDocumentation());
 });
+
 module.exports.index.documentation =
   'GET /\n' +
   '\n' +
@@ -26,6 +28,7 @@ module.exports.index.documentation =
 
 module.exports.delay = require('./delay');
 module.exports.inventory = require('./inventory');
+module.exports.login = require('./login');
 module.exports.ticket = require('./ticket');
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -33,12 +36,13 @@ module.exports.ticket = require('./ticket');
 ///////////////////////////////////////////////////////////////////////////////
 
 module.exports.listen = function() {
-  var app = express();
+  const app = express();
 
   app.use(bodyParser.json({}))
      .use(this.index)
      .use(this.delay())
      .use(this.inventory())
+     .use(this.login())
      .use(this.ticket());
 
   return app.listen.apply(app, arguments);

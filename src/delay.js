@@ -1,5 +1,6 @@
+'use strict';
 
-var express = require('express');
+const express = require('express');
 
 ///////////////////////////////////////////////////////////////////////////////
 // delay
@@ -7,8 +8,8 @@ var express = require('express');
 
 module.exports = function() {
   return express().get('/delay', function(req,res) {
-    var response_millis = parseInt(req.query.response) || 0;
-    var content_millis = parseInt(req.query.content) || 0;
+    const response_millis = parseInt(req.query.response) || 0;
+    const content_millis = parseInt(req.query.content) || 0;
 
     res.setHeader('content-type', 'text/plain');
 
