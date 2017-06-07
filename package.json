@@ -1,6 +1,6 @@
 {
   "name": "legion-obstacle-course",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "Simple \"obstacle course\" server. Used to validate the correctness of various legion libraries.",
   "main": "src/index.js",
   "scripts": {
