@@ -30,6 +30,7 @@ module.exports.delay = require('./delay');
 module.exports.inventory = require('./inventory');
 module.exports.login = require('./login');
 module.exports.ticket = require('./ticket');
+module.exports.static = require('./static');
 
 ///////////////////////////////////////////////////////////////////////////////
 // listen
@@ -43,7 +44,8 @@ module.exports.listen = function() {
      .use(this.delay())
      .use(this.inventory())
      .use(this.login())
-     .use(this.ticket());
+     .use(this.ticket())
+     .use(this.static());
 
   return app.listen.apply(app, arguments);
 };

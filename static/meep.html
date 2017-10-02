@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Static HTML5 App</title>
+</head>
+<body>
+  <button id="left" type="button" onclick="go('left')">Left</button>
+  <button id="right" type="button" onclick="go('right')">Right</button>
+</body>
+<script>
+  function go(s) {
+    document.getElementById(s).innerHTML = 'meep!';
+  }
+</script>
+</body>
+</html>  
