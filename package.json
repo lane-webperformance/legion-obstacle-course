@@ -13,6 +13,7 @@
   "license": "APSL-2.0",
   "devDependencies": {
     "eslint": "^2.10.2",
+    "eslint-plugin-promise": "^3.5.0",
     "istanbul": "^0.4.3",
     "jasmine": "^2.4.1",
     "node-fetch": "^1.5.2",
