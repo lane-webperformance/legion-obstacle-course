@@ -60,10 +60,14 @@ module.exports._legion_hooks.beforeTestAction = function(services) {
   const port = 8500 + (process.env.LEGION_PROCESS_ID || 0);
   const server = module.exports.listen(port);
 
+  module.exports.port = port;
+  module.exports.host = 'http://localhost:' + port.toString();
+  module.exports.server = server;
+
   return services.withService('legion-obstacle-course', {
-    port : port,
-    host : 'http://localhost:' + port.toString(),
-    server : server
+    port : module.exports.port,
+    host : module.exports.host,
+    server : module.exports.server
   });
 };
 
