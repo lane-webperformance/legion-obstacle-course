@@ -49,3 +49,25 @@ module.exports.listen = function() {
 
   return app.listen.apply(app, arguments);
 };
+
+///////////////////////////////////////////////////////////////////////////////
+// As a Legion plugin.
+///////////////////////////////////////////////////////////////////////////////
+
+module.exports._legion_hooks = {};
+
+module.exports._legion_hooks.beforeTestAction = function(services) {
+  const port = 8500 + (process.env.LEGION_PROCESS_ID || 0);
+  const server = module.exports.listen(port);
+
+  return services.withService('legion-obstacle-course', {
+    port : port,
+    host : 'http://localhost:' + port.toString(),
+    server : server
+  });
+};
+
+module.exports._legion_hooks.afterTestAction = function(services) {
+  services.getService('legion-obstacle-course').server.close();
+};
+

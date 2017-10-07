@@ -4,21 +4,33 @@ const index = require('../src/index');
 const fetch = require('node-fetch');
 
 describe('The / handler (that is, root index handler)', function() {
-  let server = null;
-  const port = 5000;
-  const hostport = 'http://localhost:' + port;
+  let service = null;
 
   beforeEach(function() {
-    server = index.listen(port);
+    service = index._legion_hooks.beforeTestAction({
+      withService : function(k,v) {
+        expect(k).toEqual('legion-obstacle-course');
+        expect(v).toBeDefined();
+        expect(v.host).toBeDefined();
+        expect(v.server).toBeDefined();
+        expect(v.port).toBeDefined();
+        this[k] = v;
+        return this;
+      },
+
+      getService : function(k) {
+        expect(k).toEqual('legion-obstacle-course');
+        return this[k];
+      }
+    });
   });
 
   afterEach(function() {
-    server.close();
-    server = null;
+    index._legion_hooks.afterTestAction(service);
   });
 
   it('returns a result', function(done) {
-    fetch(hostport + '/').then(function(res) {
+    fetch(service.getService('legion-obstacle-course').host + '/').then(function(res) {
       expect(res.ok).toBe(true);
       return res.text();
     }).then(function(txt) {
