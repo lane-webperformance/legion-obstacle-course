@@ -54,20 +54,18 @@ module.exports.listen = function() {
 // As a Legion plugin.
 ///////////////////////////////////////////////////////////////////////////////
 
+module.exports.port = 8500 + (process.env.LEGION_PROCESS_ID || 0);
+module.exports.host = 'http://localhost:' + module.exports.port.toString();
+
 module.exports._legion_hooks = {};
 
 module.exports._legion_hooks.beforeTestAction = function(services) {
-  const port = 8500 + (process.env.LEGION_PROCESS_ID || 0);
-  const server = module.exports.listen(port);
-
-  module.exports.port = port;
-  module.exports.host = 'http://localhost:' + port.toString();
-  module.exports.server = server;
+  const server = module.exports.listen(module.exports.port);
 
   return services.withService('legion-obstacle-course', {
     port : module.exports.port,
     host : module.exports.host,
-    server : module.exports.server
+    server : server
   });
 };
 
