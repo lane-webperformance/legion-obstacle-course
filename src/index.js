@@ -54,7 +54,7 @@ module.exports.listen = function() {
 // As a Legion plugin.
 ///////////////////////////////////////////////////////////////////////////////
 
-module.exports.port = 8500 + (process.env.LEGION_PROCESS_ID || 0);
+module.exports.port = 8500 + (process.env.LEGION_PROCESS_NUMBER || 0);
 module.exports.host = 'http://localhost:' + module.exports.port.toString();
 
 module.exports._legion_hooks = {};
