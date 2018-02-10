@@ -5,13 +5,7 @@ const net = require('net');
 //TODO: does this have any unit tests?
 module.exports.listen = function(port) {
   const server = net.createServer(function(socket) {
-    socket.on('data', buffer => {
-      for( const octet of buffer.values() ) {
-        const response = Buffer.alloc(1);
-        response.writeInt8(octet,1);
-        socket.write(response);
-      }
-    });
+    socket.pipe(socket);
 
     socket.on('error', err => {
       console.log(err); //eslint-disable-line no-console
