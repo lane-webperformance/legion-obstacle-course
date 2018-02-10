@@ -1,7 +1,7 @@
 'use strict';
 
 const fetch = require('node-fetch');
-const index = require('../src/index');
+const index = require('../src/index').http;
 const R = require('ramda');
 
 describe('The /ticket handler', function() {

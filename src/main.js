@@ -12,6 +12,11 @@ if( process.argv.indexOf('--server') > 0 ) {
   });
 }
 
+if( process.argv.indexOf('--tcp-socket-ping') > 0 ) {
+  require('./index').tcpSocketPingListen(port);
+  console.log('Tcp socket ping listening on 127.0.0.1:' + port + '.');
+}
+
 if( process.argv.indexOf('--docs') > 0 ) {
   console.log(require('./index').generateDocumentation());
 }

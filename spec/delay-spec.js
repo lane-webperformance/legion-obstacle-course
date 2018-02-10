@@ -1,6 +1,6 @@
 'use strict';
 
-const index = require('../src/index');
+const index = require('../src/index').http;
 const fetch = require('node-fetch');
 
 describe('The /delay handler', function() {

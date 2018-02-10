@@ -12,13 +12,25 @@ as training tasks for new users.
 Get detailed [documentation](./DOCUMENTATION.txt) about the tasks by
 requesting / from the server.
 
+### Http Obstacle Course
+
 Start the server by running:
 
-	npm start
+	obstacle-course --http
 
 or run it programatically from within another library by calling:
 
-	require('legion-obstacle-course').listen(port);
+	require('legion-obstacle-course').http.listen(port);
 
 The arguments and return value for listen() are exactly the same
 as the express.js method of the same name.
+
+### TCP Obstacle Course
+
+There's also a TCP echo server.
+
+	obstacle-course --tcp-echo
+
+or
+
+	require('legion-obstacle-course').tcp.echo.listen(port)
