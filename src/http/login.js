@@ -16,8 +16,10 @@ module.exports = function() {
       logins.splice(ix,1);
       res.json({ status : 'success' });
     } else {
-      res.status(422).json({ status : 'failure',
-                             reason : 'user ID ' + req.query.id + ' never existed or already used' });
+      res.status(422).json({
+        status : 'failure',
+        reason : 'user ID ' + req.query.id + ' never existed or already used'
+      });
     }
   });
 

@@ -12,8 +12,10 @@ module.exports = function() {
 
     tickets[ticket] = true;
 
-    res.json({ status : 'success',
-               ticket : ticket });
+    res.json({
+      status : 'success',
+      ticket : ticket
+    });
   });
 
   app.post('/ticket/redeem', function(req,res) {
@@ -24,8 +26,10 @@ module.exports = function() {
     
       res.json({ status : 'success' });
     } else {
-      res.status(422).json({ status : 'failure',
-                             reason : 'ticket ' + req.query.ticket + ' not found' });
+      res.status(422).json({
+        status : 'failure',
+        reason : 'ticket ' + req.query.ticket + ' not found'
+      });
     }
   });
 

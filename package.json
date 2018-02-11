@@ -12,12 +12,12 @@
   "author": "Christopher Lane Hinson <lane@webperformance.com>",
   "license": "APSL-2.0",
   "devDependencies": {
-    "eslint": "^2.10.2",
+    "eslint": "^4.17.0",
     "eslint-plugin-promise": "^3.5.0",
     "istanbul": "^0.4.3",
-    "jasmine": "^2.4.1",
-    "node-fetch": "^1.5.2",
-    "ramda": "^0.21.0"
+    "jasmine": "^3.0.0",
+    "node-fetch": "^2.0.0",
+    "ramda": "^0.25.0"
   },
   "dependencies": {
     "body-parser": "^1.16.0",

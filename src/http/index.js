@@ -40,12 +40,12 @@ module.exports.listen = function() {
   const app = express();
 
   app.use(bodyParser.json({}))
-     .use(this.index)
-     .use(this.delay())
-     .use(this.inventory())
-     .use(this.login())
-     .use(this.ticket())
-     .use(this.static());
+    .use(this.index)
+    .use(this.delay())
+    .use(this.inventory())
+    .use(this.login())
+    .use(this.ticket())
+    .use(this.static());
 
   return app.listen.apply(app, arguments);
 };

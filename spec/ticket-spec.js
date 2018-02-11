@@ -49,16 +49,15 @@ describe('The /ticket handler', function() {
 
     for( let i = 0; i < 100; i++ )
       tickets.push(fetch(hostport + '/ticket/new', { method: 'POST' })
-                     .then(res => res.json())
-                     .then(json => json.ticket));
+        .then(res => res.json())
+        .then(json => json.ticket));
 
     Promise.all(tickets)
-           .then(ts => {
-             expect(R.uniq(ts).length).toBe(100);
-             ts.forEach(t => expect(t).toBeGreaterThan(0));
-           })
-           .then(done)
-           .catch(done.fail);
-          
+      .then(ts => {
+        expect(R.uniq(ts).length).toBe(100);
+        ts.forEach(t => expect(t).toBeGreaterThan(0));
+      })
+      .then(done)
+      .catch(done.fail);
   });
 });
